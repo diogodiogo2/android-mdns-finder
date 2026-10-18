@@ -1,18 +1,30 @@
 # mDNS Finder
 
-A tiny Android app that turns a `.local` (mDNS / Bonjour) name such as `ender3.local` into an IP address, and opens it in the browser with one tap.
+A tiny Android app that turns a `.local` (mDNS / Bonjour) name into an IP address, and opens it in the browser with one tap.
 
-Android's built-in resolver does not answer `.local` names, so browsers and apps on many phones cannot reach devices that Windows 10 and Linux find without any trouble. This app sends the mDNS query itself.
+Android's built-in resolver does not answer `.local` names, so browsers and apps on many phones cannot reach devices that Windows 10+, Desktop Linux and Apple devices find without any trouble. This app sends the mDNS query itself.
 
 - Pure Java, no libraries, no native code, no XML resources (32/64-bit, ARM/x86).
-- `minSdk 9` (Android 2.3), `targetSdk 28`.
-- Texts in English, or Portuguese when the device language is Portuguese.
+- Small APK; runs on Android 2.3 (API 9) and newer.
+- Supports both English and Portuguese.
+
+![App demo image](https://github.com/diogodiogo2/android-mdns-finder/blob/main/mdns-finder-demo.png?raw=true)
+
+## AI Disclaimer
+
+This whole project (and by that I mean everything, even this readme) has been written by AI, more specifically Claude. I don't even know how to program in Java.
+
+It's just a simple app I've built for personal use, and decided to share as I quite liked the result. It hasn't been extensively tested and I may not be able to help with all the issues (feel free to document them though, I'll do my best).
+
+I understand many people don't like AI code, and I get their reasoning. You're completely free to avoid using this project. It's just a quick project I wanted to share.
+
+While I'm quite certain this can't do any harm to your Android device (it doesn't even request permissions and the IP addresses shown are local, meaning it's useless to anyone outside your local network), the program comes with NO WARRANTY whatsoever. You should agree to take any risks associated with it.
 
 ## Usage
 
-1. Type the device name (`ender3.local`, or just `ender3`) and press **Find IP address**.
+1. Type the device name (`DeviceName.local`, or just `DeviceName`) and press **Find IP address**.
 2. The IP address is shown (long-press it to copy on Android 3.0+).
-3. Press **Open in browser**.
+3. Press **Open in browser** if you want.
 
 A port can be typed after the name (`ender3.local:5000`); it is added to the browser address.
 
@@ -47,7 +59,3 @@ javac -encoding UTF-8 -d /tmp/mdns-test \
     test/br/local/mdnsfinder/TestAll.java
 java -cp /tmp/mdns-test br.local.mdnsfinder.TestAll
 ```
-
-## License
-
-None chosen yet.
