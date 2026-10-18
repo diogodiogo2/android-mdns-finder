@@ -20,18 +20,24 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
+
+      - name: Install Android platform and build-tools
+        run: |
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" \
+            "platforms;android-28" "build-tools;34.0.0"
+
       - name: Build
         run: chmod +x build.sh && ./build.sh
 
       - uses: actions/upload-artifact@v4
         with:
-          name: cia-sender-apk
-          path: cia-sender.apk
+          name: mdns-finder-apk
+          path: MdnsFinder.apk
 
       - name: Release
         if: github.event_name == 'workflow_dispatch' || startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ github.event.inputs.version || github.ref_name }}
-          files: cia-sender.apk
+          files: MdnsFinder.apk
           generate_release_notes: true
